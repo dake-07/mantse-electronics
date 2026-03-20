@@ -339,7 +339,7 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
       
       <div className="product-info">
         <div>
-          <h3 className="product-name" style={{ marginBottom: product.name === "Samsung Galaxy A07" ? '0.25rem' : '0.5rem' }}>
+          <h3 className="product-name">
             {product.name}
           </h3>
           {/* Custom badge for A07 adapter requirement */}
@@ -435,7 +435,7 @@ const FeaturedProducts = ({ activeCategory = "All", setActiveCategory }) => {
         </div>
 
         <div className="products-grid">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence>
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product, index) => (
                 <ProductCard 

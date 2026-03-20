@@ -49,7 +49,9 @@
 .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr; /* Force cards in a row to match heights */
   gap: 2rem;
+  align-items: stretch;
 }
 
 .product-card {
@@ -61,6 +63,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  will-change: transform, opacity; /* Hint for smoother reframes */
 }
 
 .product-card::before {
@@ -194,8 +197,11 @@
 .product-name {
   font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: var(--text-primary);
+  min-height: 3.5rem; /* Standardize space for multi-line names */
+  display: flex;
+  align-items: center;
 }
 
 .product-meta {
@@ -297,6 +303,7 @@
     padding: 0 1.5rem 2rem 1.5rem; /* Bottom padding for shadow */
     -ms-overflow-style: none;
     scrollbar-width: none;
+    align-items: stretch; /* Keep flex items uniform */
   }
   .products-grid::-webkit-scrollbar {
     display: none;
