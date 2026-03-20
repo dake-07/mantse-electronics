@@ -63,7 +63,7 @@ const ContactSection = () => {
               allowFullScreen="" 
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Mantse Electronic Hub Location"
+              title="Mantse Electronics Hub Location"
             ></iframe>
           </div>
         </motion.div>

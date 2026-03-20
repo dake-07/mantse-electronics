@@ -4,7 +4,7 @@ import './HeroSection.css';
 import macbookImg from '../assets/macbook_placeholder.png';
 import ps5Img from '../assets/ps5_placeholder.png';
 
-const MagneticButton = ({ children, className }) => {
+const MagneticButton = ({ children, className, onClick }) => {
   const ref = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -28,6 +28,7 @@ const MagneticButton = ({ children, className }) => {
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       className={className}
+      onClick={onClick}
     >
       {children}
     </motion.button>
@@ -69,7 +70,12 @@ const HeroSection = () => {
             Experience the future of electronics with premium gear designed for creators, gamers, and professionals.
           </motion.p>
           <motion.div className="hero-ctas" variants={fadeUp}>
-            <MagneticButton className="cta-primary">Browse Catalog</MagneticButton>
+            <MagneticButton 
+              className="cta-primary" 
+              onClick={() => document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Browse Catalog
+            </MagneticButton>
           </motion.div>
         </motion.div>
         <div className="hero-visuals">

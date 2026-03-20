@@ -14,8 +14,8 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <img src={globeImg} alt="Mantse Electronic Hub Icon" style={{ height: '32px', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(0, 242, 255, 0.3))' }} />
-          <span style={{ fontWeight: '600' }}>Mantse Electronic Hub</span>
+          <img src={globeImg} alt="Mantse Electronics Hub Icon" style={{ height: '32px', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(0, 242, 255, 0.3))' }} />
+          <span style={{ fontWeight: '600' }}>Mantse Electronics Hub</span>
         </div>
         <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-active' : ''}`}>
           <li><a href="#hero" onClick={() => setIsMobileMenuOpen(false)}>Home</a></li>

@@ -29,11 +29,11 @@ const Footer = () => {
         
         <div className="footer-brand">
           <div className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <img src={globeImg} alt="Mantse Electronic Hub Icon" style={{ height: '32px', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(0, 242, 255, 0.3))' }} />
-            <span style={{ fontWeight: '600', fontSize: '1.2rem' }}>Mantse Electronic Hub</span>
+            <img src={globeImg} alt="Mantse Electronics Hub Icon" style={{ height: '32px', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(0, 242, 255, 0.3))' }} />
+            <span style={{ fontWeight: '600', fontSize: '1.2rem' }}>Mantse Electronics Hub</span>
           </div>
           <p className="footer-copy">
-            &copy; 2026 Mantse Electronic Hub. All rights reserved.
+            &copy; 2026 Mantse Electronics Hub. All rights reserved.
           </p>
         </div>
 
