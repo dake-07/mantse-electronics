@@ -38,7 +38,7 @@ const FloatingWhatsApp = () => {
         {tooltipText}
       </div>
       <a 
-        href="https://wa.me/233240000000" 
+        href={`https://wa.me/+233271292016?text=${encodeURIComponent("Hi Mantse Hub, I have a general inquiry about your electronics gear.")}`} 
         className="floating-whatsapp-btn"
         target="_blank"
         rel="noopener noreferrer"

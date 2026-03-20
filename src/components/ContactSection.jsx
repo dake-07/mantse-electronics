@@ -30,7 +30,7 @@ const ContactSection = () => {
           </div>
 
           <div className="contact-actions">
-            <a href="tel:+233000000000" className="btn-call">
+            <a href="tel:+233271292016" className="btn-call">
               <Phone size={18} />
               Call Us
             </a>

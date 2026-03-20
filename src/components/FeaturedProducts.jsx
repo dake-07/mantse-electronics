@@ -304,13 +304,12 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
   const [selectedVariant, setSelectedVariant] = useState(displayVariants[0] || "");
 
   const getWhatsAppLink = () => {
-    let msg = `Hi Mantse Hub, I'd like to check the price for the ${product.name}`;
+    let msg = `Hi Mantse Hub, I'm interested in the ${product.name}`;
     if (selectedVariant) {
       msg += ` (${selectedVariant})`;
-    } else if (displayVariants.length > 0) {
-      msg += ` (${displayVariants.join(', ')})`;
     }
-    return `https://wa.me/233240000000?text=${encodeURIComponent(msg + '.')}`;
+    msg += `. What's the best price for this today?`;
+    return `https://wa.me/+233271292016?text=${encodeURIComponent(msg)}`;
   };
 
   const handleMouseMove = (e) => {
@@ -487,7 +486,7 @@ const FeaturedProducts = ({ activeCategory = "All", setActiveCategory }) => {
                 <div className="empty-state-content">
                   <h3 className="empty-state-title">Coming Soon to {activeCategory}</h3>
                   <p className="empty-state-desc">We're constantly restocking with the latest and greatest gear. Be the first to know when it drops.</p>
-                  <a href={`https://wa.me/233240000000?text=${encodeURIComponent(`Hi Mantse Electronics Hub, do you have any new stock arriving for ${activeCategory}?`)}`} target="_blank" rel="noopener noreferrer" className="whatsapp-cta-link">
+                  <a href={`https://wa.me/+233271292016?text=${encodeURIComponent(`Hi Mantse Electronics Hub, do you have any new stock arriving for ${activeCategory}?`)}`} target="_blank" rel="noopener noreferrer" className="whatsapp-cta-link">
                     <button className="whatsapp-cta" style={{ background: 'transparent', border: '1px solid var(--accent-cyan)', padding: '0.8rem 1.5rem', color: 'var(--text-primary)', borderRadius: '8px', cursor: 'pointer' }}>Inquire via WhatsApp</button>
                   </a>
                 </div>
