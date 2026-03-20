@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-primary: 'Syne', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+  --font-accent: 'Space Mono', monospace;
+  --bg-dark: #050505;
+  --accent-cyan: #00F2FF;
+  --accent-green: #25D366;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0A0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-secondary);
+  line-height: 1.6;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2 {
+  font-family: var(--font-primary);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

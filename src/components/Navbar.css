@@ -1,0 +1,139 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(5, 5, 5, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.logo-icon {
+  color: var(--accent-cyan);
+  filter: drop-shadow(0 0 8px rgba(0, 242, 255, 0.4));
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.contact-btn {
+  display: inline-block;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--accent-cyan);
+  padding: 0.6rem 1.75rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.1);
+}
+
+.contact-btn:hover {
+  background: var(--accent-cyan);
+  color: var(--bg-dark);
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.mobile-contact {
+  display: none;
+}
+
+/* Base list styling update */
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+    z-index: 101; /* Above mobile menu */
+    position: relative;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: var(--bg-dark);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: right 0.4s ease;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    z-index: 100;
+  }
+
+  .nav-links.mobile-active {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 1.25rem;
+  }
+
+  .mobile-contact {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
