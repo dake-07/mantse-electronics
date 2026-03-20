@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useMotionValueEvent } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './FeaturedProducts.css';
 
 // Real Generated Renders
@@ -13,13 +13,13 @@ import imgIphone17 from '../assets/attachments/Iphone 17 pro max.jpg';
 import imgA07 from '../assets/attachments/Samsung galaxy AO7.jpg';
 import imgTabS11 from '../assets/attachments/Samsung galaxy Tab S11 Ultra 5G.jpg';
 import imgTabA11 from '../assets/attachments/Samsung Tab A11.jpg';
-import imgHpOmni from '../assets/attachments/HP Omnibook.png';
 import imgPill from '../assets/attachments/Beats pill.jpg';
 import imgTclTv from "../assets/attachments/TCL Qled Tv 98''.jpg";
-import imgS25 from '../assets/attachments/Samsung galaxy s25.jpg';
-import imgS25Ultra from '../assets/attachments/Samsung galaxy s25 Ultra.jpg';
 import imgIphone16ProMax from '../assets/attachments/Iphone 16 pro max.jpg';
+import imgS25Ultra from '../assets/attachments/Samsung galaxy s25 Ultra.jpg';
+import imgS25 from '../assets/attachments/Samsung galaxy s25.jpg';
 import imgIpadA16 from '../assets/attachments/Ipad A16.jpg';
+import imgHpOmni from '../assets/attachments/HP Omnibook.png';
 
 const products = [
   {
@@ -28,30 +28,31 @@ const products = [
     category: "Mobile & Tablets",
     variants: ["256GB", "512GB", "1TB"],
     detailed_specs: {
-      display: "7.6-inch Foldable Dynamic AMOLED 2X",
-      processor: "Snapdragon 8 Gen 5",
-      camera: "50MP Triple Rear Camera",
-      battery: "4400mAh with 45W Fast Charging"
+      "display": "7.6-inch Foldable Dynamic AMOLED 2X",
+      "processor": "Snapdragon 8 Gen 4",
+      "camera": "50MP Triple Rear Camera System",
+      "battery": "4400mAh with 45W Fast Charging"
     },
     image_alt: "Samsung Galaxy Fold7",
     glow_color: "rgba(0, 114, 255, 0.3)",
-    image: imgFold7
+    image: imgFold7,
+    badge: "Mobile & Tablets"
   },
   {
     id: 2,
-    name: "Samsung Galaxy Z Tri-Fold",
+    name: "Samsung Galaxy Z TriFold",
     category: "Mobile & Tablets",
     variants: ["16/512GB (Dual Sim)"],
     detailed_specs: {
-      display: "10.2-inch Triple-Folding Screen",
-      hinge: "Dual-Axis Elite Hinge",
-      os: "Android 16 Optimized for Tri-Fold",
-      durability: "IPX8 Water Resistance"
+      "display": "10.2-inch Triple-Folding Display",
+      "hinge": "Advanced Dual-Hinge Mechanism",
+      "os": "Android 16 with Tri-Tasking UI",
+      "durability": "IPX8 Water Resistance"
     },
-    image_alt: "Samsung Galaxy Z Tri-Fold",
-    glow_color: "rgba(111, 66, 193, 0.4)",
-    is_flagship: true,
-    image: imgTrifold
+    image_alt: "Samsung Galaxy Z TriFold",
+    glow_color: "rgba(0, 114, 255, 0.4)",
+    image: imgTrifold,
+    badge: "Mobile & Tablets"
   },
   {
     id: 3,
@@ -59,15 +60,15 @@ const products = [
     category: "Mobile & Tablets",
     variants: ["256GB", "512GB", "1TB"],
     detailed_specs: {
-      display: "6.8-inch QHD+ 144Hz AMOLED",
-      processor: "Snapdragon 8 Gen 5",
-      camera: "200MP Main + 100x Space Zoom",
-      build: "Grade 5 Titanium Frame"
+      "display": "6.8-inch QHD+ 144Hz AMOLED",
+      "processor": "Snapdragon 8 Gen 5 (Antigravity Edition)",
+      "camera": "200MP Main + 100x Space Zoom",
+      "build": "Grade 5 Titanium Frame"
     },
     image_alt: "Samsung Galaxy S26 Ultra",
-    glow_color: "rgba(100, 100, 100, 0.4)",
-    is_flagship: true,
-    image: imgS26
+    glow_color: "rgba(0, 114, 255, 0.4)",
+    image: imgS26,
+    badge: "Mobile & Tablets"
   },
   {
     id: 4,
@@ -75,29 +76,31 @@ const products = [
     category: "Wearables",
     variants: ["40mm", "44mm"],
     detailed_specs: {
-      sensors: "BioActive Health Sensor Suite",
-      battery: "Up to 80 hours",
-      screen: "Sapphire Crystal Glass",
-      os: "WearOS 6"
+      "sensors": "BioActive Sensor (ECG, Blood Pressure)",
+      "battery": "Up to 80 hours (Normal mode)",
+      "screen": "Sapphire Crystal Glass",
+      "connectivity": "GPS, NFC, LTE Optional"
     },
     image_alt: "Samsung Galaxy Watch 8",
     glow_color: "rgba(255, 69, 0, 0.3)",
-    image: imgWatch8
+    image: imgWatch8,
+    badge: "Wearables"
   },
   {
     id: 5,
     name: "iPhone Air",
     category: "Mobile & Tablets",
-    variants: ["256GB", "512GB (Esim Unlocked)"],
+    variants: ["256GB (Esim Unlocked)", "512GB (Esim Unlocked)"],
     detailed_specs: {
-      design: "Ultra-Thin 5.1mm Chassis",
-      processor: "A19 Bionic Chip",
-      security: "FaceID 2.0 (Under-display)",
-      weight: "Lightest iPhone ever"
+      "design": "Ultra-Thin 5mm Chassis",
+      "processor": "A18 Bionic Chip",
+      "security": "FaceID 2.0 (Under-display)",
+      "charging": "MagSafe only (No Port)"
     },
     image_alt: "iPhone Air",
-    glow_color: "rgba(0, 242, 255, 0.2)",
-    image: imgIphoneAir
+    glow_color: "rgba(255, 255, 255, 0.2)",
+    image: imgIphoneAir,
+    badge: "Mobile & Tablets"
   },
   {
     id: 6,
@@ -105,14 +108,15 @@ const products = [
     category: "Mobile & Tablets",
     variants: ["128GB (Physical Sim Unlocked)"],
     detailed_specs: {
-      display: "6.1-inch Super Retina XDR",
-      processor: "A18 Chip",
-      camera: "48MP Dual Camera System",
-      feature: "Action Button Integration"
+      "display": "6.1-inch Super Retina XDR",
+      "processor": "A18 Chip",
+      "camera": "48MP Main Camera",
+      "button": "Action Button Integration"
     },
     image_alt: "iPhone 16",
-    glow_color: "rgba(0, 255, 127, 0.2)",
-    image: imgIPhone16
+    glow_color: "rgba(255, 255, 255, 0.1)",
+    image: imgIPhone16,
+    badge: "Mobile & Tablets"
   },
   {
     id: 7,
@@ -120,30 +124,31 @@ const products = [
     category: "Mobile & Tablets",
     variants: ["256GB", "512GB", "1TB", "2TB"],
     detailed_specs: {
-      display: "6.7-inch ProMotion 120Hz",
-      processor: "A19 Pro Chip",
-      zoom: "10x Optical Periscope Zoom",
-      video: "8K ProRes @ 60fps"
+      "display": "6.7-inch ProMotion 120Hz",
+      "processor": "A19 Pro Chip",
+      "zoom": "10x Optical Periscope Zoom",
+      "video": "8K ProRes Video Recording"
     },
     image_alt: "iPhone 17 Pro Max",
-    glow_color: "rgba(200, 160, 110, 0.3)",
-    is_flagship: true,
-    image: imgIphone17
+    glow_color: "rgba(200, 200, 200, 0.3)",
+    image: imgIphone17,
+    badge: "Mobile & Tablets"
   },
   {
     id: 8,
     name: "Samsung Galaxy A07",
     category: "Mobile & Tablets",
-    variants: ["64/4GB (With Power Adapter)"],
+    variants: ["64/4GB"],
     detailed_specs: {
-      display: "6.5-inch Infinity-V Display",
-      battery: "5000mAh Massive Battery",
-      storage: "Expandable via MicroSD",
-      charger: "Includes 25W Wall Adapter"
+      "display": "6.5-inch HD+ LCD",
+      "battery": "5000mAh Long-lasting",
+      "expansion": "MicroSD Slot up to 1TB",
+      "box": "Includes 25W Power Adapter"
     },
     image_alt: "Samsung Galaxy A07",
-    glow_color: "rgba(255, 255, 255, 0.1)",
-    image: imgA07
+    glow_color: "rgba(0, 114, 255, 0.1)",
+    image: imgA07,
+    badge: "Mobile & Tablets"
   },
   {
     id: 9,
@@ -151,14 +156,15 @@ const products = [
     category: "Mobile & Tablets",
     variants: ["256/12GB (Cellular + WiFi)"],
     detailed_specs: {
-      display: "14.6-inch Super AMOLED",
-      connectivity: "5G & WiFi 7 Ready",
-      pen: "Low-Latency S-Pen Included",
-      multitasking: "Samsung DeX Support"
+      "screen": "14.6-inch Super AMOLED",
+      "connectivity": "5G High-Speed Data",
+      "stylus": "S-Pen with 2.8ms Latency",
+      "sound": "Quad Speakers by AKG"
     },
-    image_alt: "Galaxy Tab S11 Ultra",
+    image_alt: "Samsung Galaxy Tab S11 Ultra 5G",
     glow_color: "rgba(0, 114, 255, 0.3)",
-    image: imgTabS11
+    image: imgTabS11,
+    badge: "Mobile & Tablets"
   },
   {
     id: 10,
@@ -166,14 +172,15 @@ const products = [
     category: "Mobile & Tablets",
     variants: ["64/4GB", "128/8GB (Cellular + WiFi)"],
     detailed_specs: {
-      screen: "11-inch WUXGA Display",
-      battery: "7,040mAh",
-      audio: "Dual Stereo Speakers",
-      security: "Face Recognition"
+      "size": "11-inch IPS Display",
+      "battery": "7040mAh",
+      "os": "Android 15",
+      "use": "Perfect for Education & Streaming"
     },
     image_alt: "Tab A11",
-    glow_color: "rgba(200, 200, 200, 0.2)",
-    image: imgTabA11
+    glow_color: "rgba(100, 100, 100, 0.2)",
+    image: imgTabA11,
+    badge: "Mobile & Tablets"
   },
   {
     id: 11,
@@ -181,14 +188,15 @@ const products = [
     category: "Computing",
     variants: ["Core5 / 8GB / 512GB"],
     detailed_specs: {
-      type: "2-in-1 Convertible Design",
-      cpu: "Intel Core 5 (Series 1)",
-      screen: "14-inch Touchscreen OLED",
-      security: "Fingerprint Reader"
+      "type": "2-in-1 Convertible Laptop",
+      "processor": "Intel Core 5 (Ultra Series)",
+      "screen": "14-inch OLED Touchscreen",
+      "hinge": "360-degree Rotating Screen"
     },
     image_alt: "HP OmniBook Flip360",
-    glow_color: "rgba(255, 255, 255, 0.4)",
-    image: imgHpOmni
+    glow_color: "rgba(0, 242, 255, 0.2)",
+    image: imgHpOmni,
+    badge: "Computing"
   },
   {
     id: 12,
@@ -196,102 +204,112 @@ const products = [
     category: "Speakers",
     variants: ["Bluetooth Speakers"],
     detailed_specs: {
-      audio: "High-Excursion Woofer",
-      battery: "24-Hour Battery Life",
-      ruggedness: "IP67 Water/Dust Resistance",
-      fast_charge: "10 mins = 2 hours play"
+      "sound": "Enhanced Woofer & Tweeter",
+      "battery": "24 Hours Playback",
+      "resistance": "IP67 Dust & Water Proof",
+      "pairing": "One-touch Apple & Android Pairing"
     },
     image_alt: "Beats Pill",
-    glow_color: "rgba(255, 0, 0, 0.2)",
-    image: imgPill
+    glow_color: "rgba(255, 0, 50, 0.3)",
+    image: imgPill,
+    badge: "Speakers"
   },
   {
     id: 13,
+    name: "Samsung Galaxy S25",
+    category: "Mobile & Tablets",
+    variants: ["128/12GB (Dual Sim)", "256/12GB (Dual Sim)"],
+    detailed_specs: {
+      "display": "6.2-inch Dynamic AMOLED 2X",
+      "processor": "Snapdragon 8 Gen 4",
+      "camera": "50MP Dual Pixel Main Sensor",
+      "ai": "Galaxy AI Advanced Suite"
+    },
+    image_alt: "Samsung Galaxy S25",
+    glow_color: "rgba(0, 114, 255, 0.2)",
+    image: imgS25,
+    badge: "Mobile & Tablets"
+  },
+  {
+    id: 14,
+    name: "Samsung Galaxy S25 Ultra",
+    category: "Mobile & Tablets",
+    variants: ["256GB (Dual Sim)", "512GB (Dual Sim)", "1TB (Dual Sim)"],
+    detailed_specs: {
+      "display": "6.8-inch Flat Display",
+      "processor": "Snapdragon 8 Gen 4",
+      "camera": "200MP Ultra Vision Camera",
+      "build": "Symmetric Titanium Frame"
+    },
+    image_alt: "Samsung Galaxy S25 Ultra",
+    glow_color: "rgba(255, 215, 0, 0.2)",
+    image: imgS25Ultra,
+    badge: "Mobile & Tablets"
+  },
+  {
+    id: 15,
+    name: "iPhone 16 Pro Max",
+    category: "Mobile & Tablets",
+    variants: ["256GB", "512GB (Physical & Esim)"],
+    detailed_specs: {
+      "display": "6.9-inch Borderless Display",
+      "processor": "A18 Pro Chip",
+      "camera": "Fusion Camera with 48MP Macro",
+      "connection": "WiFi 7 Support"
+    },
+    image_alt: "iPhone 16 Pro Max",
+    glow_color: "rgba(0, 242, 255, 0.4)",
+    image: imgIphone16ProMax,
+    badge: "Mobile & Tablets"
+  },
+  {
+    id: 16,
+    name: "iPad A16",
+    category: "Mobile & Tablets",
+    variants: ["128GB", "256GB", "WiFi Only", "Cellular + WiFi"],
+    detailed_specs: {
+      "chip": "A16 Bionic (Enhanced)",
+      "display": "10.9-inch Liquid Retina",
+      "port": "USB-C High Speed",
+      "colors": "Available in 4 Vibrant Colors"
+    },
+    image_alt: "iPad A16",
+    glow_color: "rgba(100, 100, 100, 0.2)",
+    image: imgIpadA16,
+    badge: "Mobile & Tablets"
+  },
+  {
+    id: 17,
     name: "TCL QLED TV 98\"",
     category: "TV Sets",
     variants: ["98-inch 4K HDR"],
     detailed_specs: {
-      panel: "Quantum Dot QLED 144Hz",
-      gaming: "Game Master 2.0 Mode",
-      audio: "Onkyo Surround Sound",
-      os: "Google TV Built-in"
+      "panel": "Quantum Dot (QLED) Technology",
+      "gaming": "144Hz Variable Refresh Rate",
+      "audio": "Onkyo 2.1.2 Surround Sound",
+      "os": "Google TV Built-in"
     },
     image_alt: "TCL Qled Tv 98",
-    glow_color: "rgba(255, 255, 0, 0.2)",
-    is_flagship: true,
-    image: imgTclTv
-  },
-  {
-    id: 14,
-    name: "Samsung Galaxy S25",
-    category: "Mobile & Tablets",
-    variants: ["128/12GB", "256/12GB (Dual sim)"],
-    detailed_specs: {
-      display: "6.2-inch Dynamic AMOLED",
-      processor: "Snapdragon 8 Gen 4",
-      camera: "50MP Main Camera",
-      ai: "Galaxy AI Features"
-    },
-    image_alt: "Samsung Galaxy S25",
-    glow_color: "rgba(0, 114, 255, 0.2)",
-    image: imgS25
-  },
-  {
-    id: 15,
-    name: "Samsung Galaxy S25 Ultra",
-    category: "Mobile & Tablets",
-    variants: ["256GB", "512GB", "1TB (Dual Sim)"],
-    detailed_specs: {
-      display: "6.8-inch Flat Frame",
-      build: "Titanium Construction",
-      camera: "200MP Quad Zoom System",
-      stylus: "Embedded S-Pen"
-    },
-    image_alt: "Samsung Galaxy S25 Ultra",
-    glow_color: "rgba(100, 100, 100, 0.3)",
-    image: imgS25Ultra
-  },
-  {
-    id: 16,
-    name: "iPhone 16 Pro Max",
-    category: "Mobile & Tablets",
-    variants: ["256GB", "512GB (Physical + Esim)"],
-    detailed_specs: {
-      display: "6.9-inch Borderless Screen",
-      processor: "A18 Pro Chip",
-      camera: "Fusion 48MP Camera",
-      connection: "WiFi 7 Ready"
-    },
-    image_alt: "iPhone 16 Pro Max",
-    glow_color: "rgba(200, 160, 110, 0.2)",
-    image: imgIphone16ProMax
-  },
-  {
-    id: 17,
-    name: "iPad A16",
-    category: "Mobile & Tablets",
-    variants: ["128GB", "256GB", "Cellular+WiFi", "WiFi only"],
-    detailed_specs: {
-      chip: "A16 Bionic (6-core CPU)",
-      display: "10.9-inch Liquid Retina",
-      ports: "USB-C Connectivity",
-      video: "4K Video Recording"
-    },
-    image_alt: "iPad A16",
-    glow_color: "rgba(0, 242, 255, 0.1)",
-    image: imgIpadA16
+    glow_color: "rgba(255, 0, 0, 0.2)",
+    image: imgTclTv,
+    badge: "TV Sets"
   }
 ];
 
 const categories = ["All", "Mobile & Tablets", "Computing", "Wearables", "Speakers", "TV Sets", "Gaming Zone"];
 
-const ProductCard = ({ product, index, isActive, setSelectedProductForSpecs }) => {
+const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
   const displayVariants = product.variants.filter(v => !v.includes('GHS'));
   const [selectedVariant, setSelectedVariant] = useState(displayVariants[0] || "");
 
   const getWhatsAppLink = () => {
-    let msg = `Hi Mantse Hub, I'm looking at the ${product.name}. What's the best price today?`;
-    return `https://wa.me/233240000000?text=${encodeURIComponent(msg)}`;
+    let msg = `Hi Mantse Hub, I'd like to check the price for the ${product.name}`;
+    if (selectedVariant) {
+      msg += ` (${selectedVariant})`;
+    } else if (displayVariants.length > 0) {
+      msg += ` (${displayVariants.join(', ')})`;
+    }
+    return `https://wa.me/233240000000?text=${encodeURIComponent(msg + '.')}`;
   };
 
   const handleMouseMove = (e) => {
@@ -302,30 +320,34 @@ const ProductCard = ({ product, index, isActive, setSelectedProductForSpecs }) =
     e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
   };
 
-  const badgeText = product.is_flagship ? "2026 FLAGSHIP" : (product.id === 12 ? "NEW" : (product.id === 8 ? "✨ Includes Power Adapter" : product.category));
-
   return (
     <motion.div 
       layout
-      className={`product-card ${isActive ? 'active-focus' : ''}`}
+      className="product-card"
       onMouseMove={handleMouseMove}
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, delay: (index % 6) * 0.1, ease: "easeOut" }}
       style={{ '--hover-glow': product.glow_color }}
     >
       <div className="product-image-container">
         <img src={product.image} alt={product.image_alt || product.name} className="product-img" loading="lazy" decoding="async" />
-        <span className="product-badge">{badgeText}</span>
+        <span className="product-badge">{product.badge}</span>
       </div>
       
       <div className="product-info">
         <div>
-          <h3 className="product-name" style={{ marginBottom: '0.5rem' }}>
+          <h3 className="product-name" style={{ marginBottom: product.name === "Samsung Galaxy A07" ? '0.25rem' : '0.5rem' }}>
             {product.name}
           </h3>
+          {/* Custom badge for A07 adapter requirement */}
+          {product.name === "Samsung Galaxy A07" && (
+            <span style={{ fontSize: '0.8rem', color: 'var(--accent-green)', fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>
+              ✨ Includes Power Adapter
+            </span>
+          )}
         </div>
 
         {displayVariants.length > 1 ? (
@@ -375,7 +397,7 @@ const ProductCard = ({ product, index, isActive, setSelectedProductForSpecs }) =
             rel="noopener noreferrer"
             className="whatsapp-cta-link"
           >
-            Get Best Price <span className="pulse-arrow">↗</span>
+            Get best price <span>↗</span>
           </a>
         </div>
       </div>
@@ -385,84 +407,18 @@ const ProductCard = ({ product, index, isActive, setSelectedProductForSpecs }) =
 
 const FeaturedProducts = ({ activeCategory = "All", setActiveCategory }) => {
   const [selectedProductForSpecs, setSelectedProductForSpecs] = useState(null);
-  const trackRef = useRef(null);
-  
-  const [trackConstraints, setTrackConstraints] = useState({ left: 0, right: 0 });
-  const x = useMotionValue(0);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const filteredProducts = activeCategory === "All" 
     ? products 
     : products.filter(p => p.category === activeCategory);
-
-  const calculateConstraints = () => {
-    if (trackRef.current && trackRef.current.parentElement) {
-      const containerWidth = trackRef.current.parentElement.offsetWidth;
-      const trackWidth = trackRef.current.scrollWidth;
-      const maxScroll = Math.max(0, trackWidth - containerWidth);
-      setTrackConstraints({ left: -maxScroll, right: 0 });
-    }
-  };
-
-  useEffect(() => {
-    calculateConstraints();
-    window.addEventListener('resize', calculateConstraints);
-    return () => window.removeEventListener('resize', calculateConstraints);
-  }, [filteredProducts]);
-
-  useMotionValueEvent(x, "change", (latest) => {
-    if (!trackRef.current || trackRef.current.children.length === 0) return;
-    const containerWidth = trackRef.current.parentElement.offsetWidth;
-    const targetCenter = -latest + (containerWidth / 2);
-    
-    let closestIndex = 0;
-    let closestDistance = Infinity;
-
-    Array.from(trackRef.current.children).forEach((child, index) => {
-      const childCenter = child.offsetLeft + (child.offsetWidth / 2);
-      const distance = Math.abs(childCenter - targetCenter);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    if (closestIndex !== activeIndex) {
-      setActiveIndex(closestIndex);
-    }
-  });
-
-  const dragTransition = {
-    power: 0.1,
-    timeConstant: 250,
-    modifyTarget: (target) => {
-      if (!trackRef.current || trackRef.current.children.length === 0) return target;
-      const containerWidth = trackRef.current.parentElement.offsetWidth;
-      const targetCenter = -target + (containerWidth / 2);
-      
-      let closestDistance = Infinity;
-      let closestX = target; 
-
-      Array.from(trackRef.current.children).forEach(child => {
-        const childCenter = child.offsetLeft + (child.offsetWidth / 2);
-        const distance = Math.abs(childCenter - targetCenter);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestX = -(childCenter - (containerWidth / 2));
-        }
-      });
-      
-      return Math.max(trackConstraints.left, Math.min(0, closestX));
-    }
-  };
 
   return (
     <section className="featured" id="featured">
       <div className="featured-container">
         
         <div className="featured-header">
-          <h2 className="section-title">Trending Now</h2>
-          <p className="section-subtitle">Swipe through our comprehensive flagship inventory.</p>
+          <h2 className="section-title">Trending This Week</h2>
+          <p className="section-subtitle">The most highly sought-after gear from top brands.</p>
         </div>
 
         {/* Filter Bar */}
@@ -478,44 +434,37 @@ const FeaturedProducts = ({ activeCategory = "All", setActiveCategory }) => {
           ))}
         </div>
 
-        <div className="carousel-viewport">
-          <motion.div 
-            className="carousel-track" 
-            ref={trackRef}
-            drag="x"
-            dragConstraints={trackConstraints}
-            dragTransition={dragTransition}
-            style={{ x }}
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredProducts.length > 0 ? (
-                filteredProducts.map((product, index) => (
-                  <ProductCard 
-                    key={product.id} 
-                    product={product} 
-                    index={index} 
-                    isActive={activeIndex === index}
-                    setSelectedProductForSpecs={setSelectedProductForSpecs} 
-                  />
-                ))
-              ) : (
-                <motion.div
-                  layout
-                  key="empty-state"
-                  className="empty-state-card"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <div className="empty-state-content">
-                    <h3 className="empty-state-title">No products found in {activeCategory}</h3>
-                    <p className="empty-state-desc">Try clearing the filter or checking another category.</p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
+        <div className="products-grid">
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product, index) => (
+                <ProductCard 
+                  key={product.id} 
+                  product={product} 
+                  index={index} 
+                  setSelectedProductForSpecs={setSelectedProductForSpecs} 
+                />
+              ))
+            ) : (
+              <motion.div
+                layout
+                key="empty-state"
+                className="empty-state-card"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="empty-state-content">
+                  <h3 className="empty-state-title">Coming Soon to {activeCategory}</h3>
+                  <p className="empty-state-desc">We're constantly restocking with the latest and greatest gear. Be the first to know when it drops.</p>
+                  <a href={`https://wa.me/233240000000?text=${encodeURIComponent(`Hi Mantse Electronics Hub, do you have any new stock arriving for ${activeCategory}?`)}`} target="_blank" rel="noopener noreferrer" className="whatsapp-cta-link">
+                    <button className="whatsapp-cta" style={{ background: 'transparent', border: '1px solid var(--accent-cyan)', padding: '0.8rem 1.5rem', color: 'var(--text-primary)', borderRadius: '8px', cursor: 'pointer' }}>Inquire via WhatsApp</button>
+                  </a>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Specs Modal (Slide-over) */}
