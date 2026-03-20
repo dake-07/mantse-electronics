@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 import './FeaturedProducts.css';
 
 // Real Generated Renders
@@ -407,10 +408,28 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
 
 const FeaturedProducts = ({ activeCategory = "All", setActiveCategory }) => {
   const [selectedProductForSpecs, setSelectedProductForSpecs] = useState(null);
+  const [showScrollHint, setShowScrollHint] = useState(true);
+  const scrollContainerRef = useRef(null);
 
   const filteredProducts = activeCategory === "All" 
     ? products 
     : products.filter(p => p.category === activeCategory);
+
+  const handleScroll = (e) => {
+    if (e.target.scrollLeft > 50) {
+      setShowScrollHint(false);
+    } else if (e.target.scrollLeft <= 10) {
+      setShowScrollHint(true);
+    }
+  };
+
+  // Reset hint when category changes
+  useEffect(() => {
+    setShowScrollHint(true);
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = 0;
+    }
+  }, [activeCategory]);
 
   return (
     <section className="featured" id="featured">
@@ -434,8 +453,13 @@ const FeaturedProducts = ({ activeCategory = "All", setActiveCategory }) => {
           ))}
         </div>
 
-        <div className="products-grid">
-          <AnimatePresence>
+        <div className="products-grid-wrapper" style={{ position: 'relative' }}>
+          <div 
+            className="products-grid" 
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+          >
+            <AnimatePresence>
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product, index) => (
                 <ProductCard 
@@ -462,6 +486,28 @@ const FeaturedProducts = ({ activeCategory = "All", setActiveCategory }) => {
                     <button className="whatsapp-cta" style={{ background: 'transparent', border: '1px solid var(--accent-cyan)', padding: '0.8rem 1.5rem', color: 'var(--text-primary)', borderRadius: '8px', cursor: 'pointer' }}>Inquire via WhatsApp</button>
                   </a>
                 </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          </div>
+
+          {/* Scroll Hint Arrow (Mobile Only) */}
+          <AnimatePresence>
+            {showScrollHint && filteredProducts.length > 1 && (
+              <motion.div 
+                className="scroll-hint-arrow"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: [0, 5, 0],
+                }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ 
+                  opacity: { duration: 0.3 },
+                  x: { repeat: Infinity, duration: 1.5, ease: "easeInOut" }
+                }}
+              >
+                <ChevronRight size={24} color="var(--accent-cyan)" />
               </motion.div>
             )}
           </AnimatePresence>
