@@ -29,10 +29,10 @@ const Footer = () => {
         <div className="footer-brand">
           <div className="footer-logo">
             <Zap className="footer-logo-icon" size={24} />
-            <span>Mantsé</span>
+            <span>Mantsé Electronics</span>
           </div>
-          <p className="footer-copyright">
-            &copy; 2026 Mantse Electronic Hub.
+          <p className="footer-copy">
+            &copy; 2026 Mantsé Electronics. All rights reserved.
           </p>
         </div>
 

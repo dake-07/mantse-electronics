@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className="navbar-container">
         <div className="logo">
           <Zap className="logo-icon" size={24} />
-          <span>Mantsé</span>
+          <span>Mantsé Electronics</span>
         </div>
         <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-active' : ''}`}>
           <li><a href="#hero" onClick={() => setIsMobileMenuOpen(false)}>Home</a></li>
