@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import './FeaturedProducts.css';
 
 // Real Generated Renders
@@ -298,7 +298,7 @@ const products = [
 
 const categories = ["All", "Mobile & Tablets", "Computing", "Wearables", "Speakers", "TV Sets", "Gaming Zone"];
 
-const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
+const ProductCard = ({ product, index, isActive, setSelectedProductForSpecs }) => {
   const displayVariants = product.variants.filter(v => !v.includes('GHS'));
   const [selectedVariant, setSelectedVariant] = useState(displayVariants[0] || "");
 
@@ -323,7 +323,7 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
   return (
     <motion.div 
       layout
-      className="product-card"
+      className={`product-card carousel-item ${isActive ? 'active-focus' : ''}`}
       onMouseMove={handleMouseMove}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -397,7 +397,7 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
             rel="noopener noreferrer"
             className="whatsapp-cta-link"
           >
-            Get best price <span>↗</span>
+            Check Price <span className="pulse-arrow">↗</span>
           </a>
         </div>
       </div>
@@ -405,65 +405,71 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
   );
 };
 
-const FeaturedProducts = ({ activeCategory = "All", setActiveCategory }) => {
+const FeaturedProducts = () => {
   const [selectedProductForSpecs, setSelectedProductForSpecs] = useState(null);
+  const carouselRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const filteredProducts = activeCategory === "All" 
-    ? products 
-    : products.filter(p => p.category === activeCategory);
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [-50, 150]);
+
+  const enhancedProducts = products
+    .filter(p => [2, 7, 14, 15].includes(p.id))
+    .map(p => {
+      if (p.id === 2) return { ...p, badge: 'New Arrival' };
+      if (p.id === 7) return { ...p, badge: 'Popular' };
+      return p;
+    });
+
+  const handleScroll = () => {
+    if (!carouselRef.current) return;
+    const container = carouselRef.current;
+    const centerX = container.scrollLeft + container.offsetWidth / 2;
+    
+    let minDistance = Infinity;
+    let closestIndex = 0;
+
+    Array.from(container.children).forEach((child, index) => {
+      const childCenter = child.offsetLeft + child.offsetWidth / 2;
+      const distance = Math.abs(childCenter - centerX);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    if (closestIndex !== activeIndex) {
+      setActiveIndex(closestIndex);
+    }
+  };
 
   return (
     <section className="featured" id="featured">
+      <motion.div className="parallax-bg-text" style={{ y }}>
+        TRENDING
+      </motion.div>
       <div className="featured-container">
         
         <div className="featured-header">
-          <h2 className="section-title">Trending This Week</h2>
-          <p className="section-subtitle">The most highly sought-after gear from top brands.</p>
+          <h2 className="section-title">trending now</h2>
+          <p className="section-subtitle">The absolute pinnacle of modern technology.</p>
         </div>
 
-        {/* Filter Bar */}
-        <div className="filter-bar">
-          {categories.map(cat => (
-            <button 
-              key={cat}
-              className={`filter-pill ${activeCategory === cat ? 'active' : ''}`}
-              onClick={() => setActiveCategory?.(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        <div className="products-grid">
+        <div 
+          className="carousel-container" 
+          ref={carouselRef} 
+          onScroll={handleScroll}
+        >
           <AnimatePresence mode="popLayout">
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product, index) => (
-                <ProductCard 
-                  key={product.id} 
-                  product={product} 
-                  index={index} 
-                  setSelectedProductForSpecs={setSelectedProductForSpecs} 
-                />
-              ))
-            ) : (
-              <motion.div
-                layout
-                key="empty-state"
-                className="empty-state-card"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-              >
-                <div className="empty-state-content">
-                  <h3 className="empty-state-title">Coming Soon to {activeCategory}</h3>
-                  <p className="empty-state-desc">We're constantly restocking with the latest and greatest gear. Be the first to know when it drops.</p>
-                  <a href={`https://wa.me/233240000000?text=${encodeURIComponent(`Hi Mantse Electronics Hub, do you have any new stock arriving for ${activeCategory}?`)}`} target="_blank" rel="noopener noreferrer" className="whatsapp-cta-link">
-                    <button className="whatsapp-cta" style={{ background: 'transparent', border: '1px solid var(--accent-cyan)', padding: '0.8rem 1.5rem', color: 'var(--text-primary)', borderRadius: '8px', cursor: 'pointer' }}>Inquire via WhatsApp</button>
-                  </a>
-                </div>
-              </motion.div>
-            )}
+            {enhancedProducts.map((product, index) => (
+              <ProductCard 
+                key={product.id} 
+                product={product} 
+                index={index} 
+                isActive={activeIndex === index}
+                setSelectedProductForSpecs={setSelectedProductForSpecs} 
+              />
+            ))}
           </AnimatePresence>
         </div>
 
