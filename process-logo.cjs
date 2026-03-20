@@ -13,27 +13,27 @@ async function processLogo() {
         const hex = outImage.getPixelColor(x, y);
         const rgba = Jimp.intToRGBA(hex);
         
-        // If pixel is near-white background
+        // Remove background
         if (rgba.r > 200 && rgba.g > 200 && rgba.b > 200) {
           outImage.setPixelColor(Jimp.rgbaToInt(0, 0, 0, 0), x, y);
-        } 
-        // If pixel is visible (the logo parts)
-        else if (rgba.a > 50) {
-          // Accent Cyan (#00F2FF)
-          outImage.setPixelColor(Jimp.rgbaToInt(0, 242, 255, rgba.a), x, y);
+        } else if (rgba.a > 50) {
+          // Pure White
+          outImage.setPixelColor(Jimp.rgbaToInt(255, 255, 255, rgba.a), x, y);
         }
       }
     }
 
-    await outImage.writeAsync('./src/assets/logo-transparent.png');
-
-    // Create favicon by cropping the upper portion (the globe).
-    // The globe is typically centered horizontally and in the top half.
+    // Crop the upper globe portion
     const cropSize = Math.floor(width * 0.65);
     const startX = Math.floor((width - cropSize) / 2);
-    const startY = Math.floor(height * 0.1); 
+    const startY = Math.floor(height * 0.05); 
     
-    const favicon = outImage.clone().crop(startX, startY, cropSize, cropSize);
+    const globe = outImage.clone().crop(startX, startY, cropSize, cropSize);
+    globe.autocrop(); // Tight crop around the globe
+
+    await globe.writeAsync('./src/assets/globe.png');
+
+    const favicon = globe.clone();
     await favicon.resize(64, 64);
     await favicon.writeAsync('./public/favicon.png');
 
