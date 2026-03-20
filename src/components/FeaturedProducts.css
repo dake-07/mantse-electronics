@@ -269,10 +269,42 @@
 
 @media (max-width: 640px) {
   .featured {
-    padding: 4rem 1.5rem;
+    padding: 4rem 0; /* Remove horizontal padding so scroll can bleed */
+  }
+  .featured-header {
+    padding: 0 1.5rem;
+  }
+  .filter-bar {
+    padding: 0 1.5rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin-bottom: 2rem;
+  }
+  .filter-bar::-webkit-scrollbar {
+    display: none;
   }
   .products-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.25rem;
+    padding: 0 1.5rem 2rem 1.5rem; /* Bottom padding for shadow */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .products-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .product-card {
+    flex: 0 0 85vw; /* Show 1 full card and a peek of the next */
+    scroll-snap-align: center;
+    max-width: none;
   }
   .section-title {
     font-size: 2rem;
