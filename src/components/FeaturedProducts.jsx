@@ -19,6 +19,7 @@ import imgIphone16ProMax from '../assets/attachments/Iphone 16 pro max.jpg';
 import imgS25Ultra from '../assets/attachments/Samsung galaxy s25 Ultra.jpg';
 import imgS25 from '../assets/attachments/Samsung galaxy s25.jpg';
 import imgIpadA16 from '../assets/attachments/Ipad A16.jpg';
+import imgHpOmni from '../assets/attachments/HP Omnibook.png';
 
 const products = [
   {
@@ -194,7 +195,7 @@ const products = [
     },
     image_alt: "HP OmniBook Flip360",
     glow_color: "rgba(0, 242, 255, 0.2)",
-    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3",
+    image: imgHpOmni,
     badge: "Computing"
   },
   {
