@@ -322,7 +322,7 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
       style={{ '--hover-glow': product.glow_color }}
     >
       <div className="product-image-container">
-        <img src={product.image} alt={product.image_alt || product.name} className="product-img" />
+        <img src={product.image} alt={product.image_alt || product.name} className="product-img" loading="lazy" decoding="async" />
         <span className="product-badge">{product.badge}</span>
       </div>
       
@@ -478,7 +478,7 @@ const FeaturedProducts = ({ activeCategory = "All", setActiveCategory }) => {
                 <button className="specs-close-btn" onClick={() => setSelectedProductForSpecs(null)}>✕</button>
                 <div className="specs-slideover-content">
                   <div className="specs-header">
-                    <img src={selectedProductForSpecs.product.image} alt={selectedProductForSpecs.product.name} className="specs-img-small" />
+                    <img src={selectedProductForSpecs.product.image} alt={selectedProductForSpecs.product.name} className="specs-img-small" loading="lazy" decoding="async" />
                     <div>
                       <span className="specs-badge">{selectedProductForSpecs.product.category}</span>
                       <h3 className="specs-title">{selectedProductForSpecs.product.name}</h3>

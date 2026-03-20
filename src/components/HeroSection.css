@@ -183,6 +183,10 @@
     flex-direction: column;
     text-align: center;
   }
+  .floating-fast, .floating-slow {
+    animation: none !important;
+    transform: none !important;
+  }
   .hero-content {
     max-width: 100%;
   }

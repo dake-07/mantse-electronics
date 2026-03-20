@@ -26,10 +26,10 @@ const HeroSection = () => {
         </div>
         <div className="hero-visuals">
           <div className="visual-item floating-slow ps5-visual">
-            <img src={ps5Img} alt="PlayStation 5" />
+            <img src={ps5Img} alt="PlayStation 5" fetchpriority="high" />
           </div>
           <div className="visual-item floating-fast macbook-visual">
-            <img src={macbookImg} alt="MacBook Pro" />
+            <img src={macbookImg} alt="MacBook Pro" fetchpriority="high" />
           </div>
         </div>
       </div>
