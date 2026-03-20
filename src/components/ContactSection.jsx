@@ -56,7 +56,7 @@ const ContactSection = () => {
         >
           <div className="map-container">
             <iframe 
-              src="https://maps.google.com/maps?q=Ring%20Road%20Central%20and%20Heart%20Ave,%20Accra,%20Ghana&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+              src="https://maps.google.com/maps?q=Mantse+Electronic+Hub,+Accra,+Ghana&t=&z=15&ie=UTF8&iwloc=&output=embed" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
