@@ -1,16 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './FloatingWhatsApp.css';
 
 const FloatingWhatsApp = () => {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipText, setTooltipText] = useState('Need help? Inquire about stock here!');
+
+  useEffect(() => {
+    // Show greeting 3 seconds after page load
+    const showTimer = setTimeout(() => {
+      setShowTooltip(true);
+    }, 3000);
+
+    // Hide greeting after 6 seconds (total 9s after load)
+    const hideTimer = setTimeout(() => {
+      setShowTooltip(false);
+    }, 9000);
+
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
+  }, []);
+
+  const handleMouseEnter = () => {
+    setTooltipText('Chat with Mantse Hub');
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTooltipText('Need help? Inquire about stock here!');
+    setShowTooltip(false);
+  };
+
   return (
     <div className="floating-whatsapp">
+      <div className={`whatsapp-tooltip ${showTooltip ? 'visible' : ''}`}>
+        {tooltipText}
+      </div>
       <a 
-        href="https://wa.me/" 
+        href="https://wa.me/233240000000" 
         className="floating-whatsapp-btn"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
+        <div className="whatsapp-pulse-ring"></div>
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 448 512" 
