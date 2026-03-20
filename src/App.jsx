@@ -6,6 +6,7 @@ import FeaturedProducts from './components/FeaturedProducts';
 import ContactSection from './components/ContactSection';
 import TrustBar from './components/TrustBar';
 import Footer from './components/Footer';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <ContactSection />
       <TrustBar />
       <Footer />
+      <FloatingWhatsApp />
     </MainLayout>
   );
 }

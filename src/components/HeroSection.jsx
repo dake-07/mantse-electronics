@@ -70,7 +70,6 @@ const HeroSection = () => {
           </motion.p>
           <motion.div className="hero-ctas" variants={fadeUp}>
             <MagneticButton className="cta-primary">Browse Catalog</MagneticButton>
-            <MagneticButton className="cta-secondary">Chat on WhatsApp</MagneticButton>
           </motion.div>
         </motion.div>
         <div className="hero-visuals">
