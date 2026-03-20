@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Zap, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import './Navbar.css';
+import logoImg from '../assets/attachments/logo.png';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -13,8 +14,8 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="logo">
-          <Zap className="logo-icon" size={24} />
-          <span>Mantsé Electronics</span>
+          <img src={logoImg} alt="Mantse Electronic Hub" style={{ height: '32px', width: 'auto', objectFit: 'contain' }} />
+          <span>Mantse Electronic Hub</span>
         </div>
         <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-active' : ''}`}>
           <li><a href="#hero" onClick={() => setIsMobileMenuOpen(false)}>Home</a></li>

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Instagram, Zap } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 // Since TikTok isn't in lucide-react by default, we'll use a standard SVG or an alternative. 
 // For now, we'll build a custom simple SVG for TikTok to ensure the requirement is met.
 import './Footer.css';
+import logoImg from '../assets/attachments/logo.png';
 
 const TikTokIcon = ({ size = 24, className = "" }) => (
   <svg 
@@ -28,11 +29,11 @@ const Footer = () => {
         
         <div className="footer-brand">
           <div className="footer-logo">
-            <Zap className="footer-logo-icon" size={24} />
-            <span>Mantsé Electronics</span>
+            <img src={logoImg} alt="Mantse Electronic Hub" style={{ height: '32px', width: 'auto', objectFit: 'contain' }} />
+            <span>Mantse Electronic Hub</span>
           </div>
           <p className="footer-copy">
-            &copy; 2026 Mantsé Electronics. All rights reserved.
+            &copy; 2026 Mantse Electronic Hub. All rights reserved.
           </p>
         </div>
 
