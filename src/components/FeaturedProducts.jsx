@@ -303,7 +303,7 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
   const [selectedVariant, setSelectedVariant] = useState(displayVariants[0] || "");
 
   const getWhatsAppLink = () => {
-    let msg = `Hi Mantse Electronics Hub, I am inquiring about the price and availability of the ${product.name}`;
+    let msg = `Hi Mantse Hub, I'd like to check the price for the ${product.name}`;
     if (selectedVariant) {
       msg += ` (${selectedVariant})`;
     } else if (displayVariants.length > 0) {
@@ -397,7 +397,7 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
             rel="noopener noreferrer"
             className="whatsapp-cta-link"
           >
-            Inquire for Price <span>↗</span>
+            Get best price <span>↗</span>
           </a>
         </div>
       </div>
