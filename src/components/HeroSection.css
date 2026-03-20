@@ -99,21 +99,27 @@
 }
 
 .cta-secondary {
-  background: var(--accent-green);
-  color: var(--bg-dark);
-  border: none;
+  background: rgba(37, 211, 102, 0.1);
+  color: var(--text-primary);
+  border: 1px solid rgba(37, 211, 102, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 1rem 2.5rem;
   border-radius: 8px;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.15);
+  text-shadow: 0 0 8px rgba(37, 211, 102, 0.4);
 }
 
 .cta-secondary:hover {
+  background: rgba(37, 211, 102, 0.2);
+  border: 1px solid rgba(37, 211, 102, 0.8);
+  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.3);
 }
 
 .hero-visuals {
