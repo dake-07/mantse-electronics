@@ -35,7 +35,7 @@ const ContactSection = () => {
               Call Us
             </a>
             <a 
-              href="https://maps.google.com/?q=Heart+Ave,+Adabraka,+Accra,+Ghana" 
+              href="https://maps.app.goo.gl/aZG3pdxx1eFWmuhTA" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="btn-directions"
@@ -63,7 +63,7 @@ const ContactSection = () => {
               allowFullScreen="" 
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Mantsé Electronics Location"
+              title="Mantse Electronic Hub Location"
             ></iframe>
           </div>
         </motion.div>
