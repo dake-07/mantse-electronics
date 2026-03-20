@@ -323,7 +323,6 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
 
   return (
     <motion.div 
-      layout
       className="product-card"
       onMouseMove={handleMouseMove}
       initial={{ opacity: 0, y: 50 }}
@@ -410,17 +409,23 @@ const FeaturedProducts = ({ activeCategory = "All", setActiveCategory }) => {
   const [selectedProductForSpecs, setSelectedProductForSpecs] = useState(null);
   const [showScrollHint, setShowScrollHint] = useState(true);
   const scrollContainerRef = useRef(null);
+  const lastScrollPos = useRef(0);
 
   const filteredProducts = activeCategory === "All" 
     ? products 
     : products.filter(p => p.category === activeCategory);
 
   const handleScroll = (e) => {
-    if (e.target.scrollLeft > 50) {
+    const currentScrollPos = e.target.scrollLeft;
+    
+    // throttle/guard state updates to avoid unnecessary re-renders
+    if (currentScrollPos > 50 && showScrollHint) {
       setShowScrollHint(false);
-    } else if (e.target.scrollLeft <= 10) {
+    } else if (currentScrollPos <= 10 && !showScrollHint) {
       setShowScrollHint(true);
     }
+    
+    lastScrollPos.current = currentScrollPos;
   };
 
   // Reset hint when category changes
