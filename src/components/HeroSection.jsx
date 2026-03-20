@@ -34,27 +34,45 @@ const MagneticButton = ({ children, className }) => {
   );
 };
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } }
+};
+
 const HeroSection = () => {
   return (
     <section className="hero" id="hero">
       <div className="hero-container">
-        <div className="hero-content">
-          <div className="badge-wrapper">
-            <span className="location-badge">Based in Accra</span>
-          </div>
-          <p className="hero-eyebrow">Ghana's Premium Electronics Hub</p>
-          <h1 className="hero-headline">
+        <motion.div 
+          className="hero-content"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div className="badge-wrapper" variants={fadeUp}>
+            <span className="location-badge">
+              <span className="live-dot"></span>
+              Based in Accra
+            </span>
+          </motion.div>
+          <motion.p className="hero-eyebrow" variants={fadeUp}>Ghana's Premium Electronics Hub</motion.p>
+          <motion.h1 className="hero-headline" variants={fadeUp}>
             Level Up<br/>
             Your Tech Game
-          </h1>
-          <p className="hero-subheadline">
+          </motion.h1>
+          <motion.p className="hero-subheadline" variants={fadeUp}>
             Experience the future of electronics with premium gear designed for creators, gamers, and professionals.
-          </p>
-          <div className="hero-ctas">
+          </motion.p>
+          <motion.div className="hero-ctas" variants={fadeUp}>
             <MagneticButton className="cta-primary">Browse Catalog</MagneticButton>
-            <button className="cta-secondary">Chat on WhatsApp</button>
-          </div>
-        </div>
+            <MagneticButton className="cta-secondary">Chat on WhatsApp</MagneticButton>
+          </motion.div>
+        </motion.div>
         <div className="hero-visuals">
           <div className="visual-item floating-slow ps5-visual">
             <img src={ps5Img} alt="PlayStation 5" fetchpriority="high" />
