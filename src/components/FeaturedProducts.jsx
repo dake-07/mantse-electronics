@@ -312,14 +312,24 @@ const ProductCard = ({ product, index, setSelectedProductForSpecs }) => {
     return `https://wa.me/233240000000?text=${encodeURIComponent(msg + '.')}`;
   };
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   return (
     <motion.div 
       layout
       className="product-card"
+      onMouseMove={handleMouseMove}
       initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+      transition={{ duration: 0.5, delay: (index % 6) * 0.1, ease: "easeOut" }}
       style={{ '--hover-glow': product.glow_color }}
     >
       <div className="product-image-container">

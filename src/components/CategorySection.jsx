@@ -1,6 +1,19 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import './CategorySection.css';
 import { Gamepad2, Smartphone, Laptop, Watch, Speaker, Tv } from 'lucide-react';
+
+const containerVariants = {
+  hidden: {},
+  visible: { 
+    transition: { staggerChildren: 0.15 } 
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 const CategorySection = ({ setActiveCategory }) => {
   const handleCategoryClick = (category) => {
@@ -18,13 +31,20 @@ const CategorySection = ({ setActiveCategory }) => {
         <p className="section-subtitle">Find exactly what you need from our curated collections</p>
       </div>
       
-      <div className="bento-grid">
+      <motion.div 
+        className="bento-grid"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
         
         {/* Large Tile - Gaming Zone */}
-        <div 
+        <motion.div 
           className="bento-item bento-large gaming-tile"
           onClick={() => handleCategoryClick('Gaming Zone')}
           style={{ cursor: 'pointer' }}
+          variants={itemVariants}
         >
           <div className="bento-content">
             <Gamepad2 className="bento-icon" size={32} />
@@ -33,13 +53,14 @@ const CategorySection = ({ setActiveCategory }) => {
             <button className="bento-btn pointer-events-none">Shop Gaming</button>
           </div>
           <div className="glow-overlay"></div>
-        </div>
+        </motion.div>
 
         {/* Wide Tile - Mobile & Tablets */}
-        <div 
+        <motion.div 
           className="bento-item bento-wide mobile-tile"
           onClick={() => handleCategoryClick('Mobile & Tablets')}
           style={{ cursor: 'pointer' }}
+          variants={itemVariants}
         >
           <div className="bento-content">
             <Smartphone className="bento-icon" size={32} />
@@ -48,13 +69,14 @@ const CategorySection = ({ setActiveCategory }) => {
             <button className="bento-btn pointer-events-none">Shop Mobile</button>
           </div>
           <div className="glow-overlay"></div>
-        </div>
+        </motion.div>
 
         {/* Small Square 1 - Computing */}
-        <div 
+        <motion.div 
           className="bento-item bento-small computing-tile"
           onClick={() => handleCategoryClick('Computing')}
           style={{ cursor: 'pointer' }}
+          variants={itemVariants}
         >
           <div className="bento-content">
             <Laptop className="bento-icon" size={28} />
@@ -63,13 +85,14 @@ const CategorySection = ({ setActiveCategory }) => {
             <button className="bento-btn pointer-events-none">Shop Computing</button>
           </div>
           <div className="glow-overlay"></div>
-        </div>
+        </motion.div>
 
         {/* Small Square 2 - Wearables */}
-        <div 
+        <motion.div 
           className="bento-item bento-small wearables-tile"
           onClick={() => handleCategoryClick('Wearables')}
           style={{ cursor: 'pointer' }}
+          variants={itemVariants}
         >
           <div className="bento-content">
             <Watch className="bento-icon" size={28} />
@@ -78,13 +101,14 @@ const CategorySection = ({ setActiveCategory }) => {
             <button className="bento-btn pointer-events-none">Shop Wearables</button>
           </div>
           <div className="glow-overlay"></div>
-        </div>
+        </motion.div>
 
         {/* Wide Tile - Speakers */}
-        <div 
+        <motion.div 
           className="bento-item bento-wide speakers-tile"
           onClick={() => handleCategoryClick('Speakers')}
           style={{ cursor: 'pointer' }}
+          variants={itemVariants}
         >
           <div className="bento-content">
             <Speaker className="bento-icon" size={32} />
@@ -93,13 +117,14 @@ const CategorySection = ({ setActiveCategory }) => {
             <button className="bento-btn pointer-events-none">Shop Speakers</button>
           </div>
           <div className="glow-overlay"></div>
-        </div>
+        </motion.div>
 
         {/* Small Tile - TV Sets */}
-        <div 
+        <motion.div 
           className="bento-item bento-small tv-tile"
           onClick={() => handleCategoryClick('TV Sets')}
           style={{ cursor: 'pointer' }}
+          variants={itemVariants}
         >
           <div className="bento-content">
             <Tv className="bento-icon" size={28} />
@@ -108,9 +133,9 @@ const CategorySection = ({ setActiveCategory }) => {
             <button className="bento-btn pointer-events-none">Shop TVs</button>
           </div>
           <div className="glow-overlay"></div>
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };
